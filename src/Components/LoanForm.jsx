@@ -15,11 +15,11 @@ export default function LoanRequestForm() {
                 setMessage("Invalid Phone Number");
             }
             else if (formInputs.age < 18 || formInputs.age > 80) {
-                setMessage("You must be at least 18 years old and at most 80 years old to apply for a loan.");
+                setMessage("The age is not allowed");
             }
             else {
                 console.log("Form Data:", formInputs);
-                setMessage("Loan request submitted successfully!");
+                setMessage("Loan request submitted successfully😊");
                 setFormInputs({ name: "", phone: "", age: "", isEmployee: false, salary: "" });
             }
         } else {
@@ -33,12 +33,14 @@ export default function LoanRequestForm() {
 
 
     function closeModel() {
-        setShowModel(false);
+        if (showModel) {
+            setShowModel(false);
+        }
     }
 
     return (
         <>
-            <div className="loan-container" >
+            <div className="loan-container" onClick={closeModel}>
                 <div className="loan-form-card" >
                     <h2 className="loan-title">Requesting a Loan</h2>
                     <div className="form-divider"></div>
