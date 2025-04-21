@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './LoanForm.css';
 import Model from './Model';
+import InputForm from './InputForm';
 
 export default function LoanRequestForm() {
     const [formInputs, setFormInputs] = useState({ name: "", phone: "", age: "", isEmployee: false, salary: "" });
@@ -27,8 +28,6 @@ export default function LoanRequestForm() {
         }
         setShowModel(true);
     }
-
-    // const btnIsEnabled = formInputs.name !== "" && formInputs.phone !== "" && formInputs.age !== ""
     const btnIsDisabled = formInputs.name == "" || formInputs.phone == "" || formInputs.age == ""
 
 
@@ -36,6 +35,15 @@ export default function LoanRequestForm() {
         if (showModel) {
             setShowModel(false);
         }
+    }
+    function handleNameChange(val) {
+        setFormInputs({ ...formInputs, name: val });
+    }
+    function handlePhoneChange(val) {
+        setFormInputs({ ...formInputs, phone: val });
+    }
+    function handleAgeChange(val) {
+        setFormInputs({ ...formInputs, age: val });
     }
 
     return (
@@ -46,47 +54,9 @@ export default function LoanRequestForm() {
                     <div className="form-divider"></div>
 
                     <form>
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="name">Name:</label>
-                            <input
-                                className="form-input"
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formInputs.name}
-                                onChange={(event) => {
-                                    setFormInputs({ ...formInputs, name: event.target.value });
-                                }}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="phone">Phone Number:</label>
-                            <input
-                                className="form-input"
-                                type="text"
-                                id="phone"
-                                name="phone"
-                                value={formInputs.phone}
-                                onChange={(event) => {
-                                    setFormInputs({ ...formInputs, phone: event.target.value });
-                                }}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="age">Age:</label>
-                            <input
-                                className="form-input"
-                                type="text"
-                                id="age"
-                                name="age"
-                                value={formInputs.age}
-                                onChange={(event) => {
-                                    setFormInputs({ ...formInputs, age: event.target.value });
-                                }}
-                            />
-                        </div>
+                        <InputForm labelName='Name' value={formInputs.name} handleChange={handleNameChange} />
+                        <InputForm labelName='Phone Number' value={formInputs.phone} handleChange={handlePhoneChange} />
+                        <InputForm labelName='Age' value={formInputs.age} handleChange={handleAgeChange} />
 
                         <div className="checkbox-group">
                             <label className="checkbox-label" htmlFor="isEmployee">Are you an employee?</label>
