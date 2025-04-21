@@ -126,10 +126,7 @@ export default function LoanRequestForm() {
                             </button>
                         </div>
                     </form>
-
-                    {showModel ? (
-                        <Model Message={Message} closeModel={closeModel} />
-                    ) : null}
+                    <Model Message={Message} closeModel={closeModel} showModel={showModel} />
                 </div>
             </div>
         </>
